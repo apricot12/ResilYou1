@@ -18,6 +18,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as { id: string }).id;
     const { searchParams } = new URL(req.url);
     const conversationId = searchParams.get("conversationId");
 
@@ -32,7 +33,7 @@ export async function GET(req: NextRequest) {
     const conversation = await db.query.chatConversations.findFirst({
       where: and(
         eq(chatConversations.id, conversationId),
-        eq(chatConversations.userId, session.user.id)
+        eq(chatConversations.userId, userId)
       ),
     });
 
@@ -66,6 +67,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as { id: string }).id;
     const { conversationId, content } = await req.json();
 
     if (!conversationId || !content) {
@@ -79,7 +81,7 @@ export async function POST(req: NextRequest) {
     const conversation = await db.query.chatConversations.findFirst({
       where: and(
         eq(chatConversations.id, conversationId),
-        eq(chatConversations.userId, session.user.id)
+        eq(chatConversations.userId, userId)
       ),
     });
 
@@ -166,7 +168,7 @@ Always confirm actions in a friendly, professional way.`,
           const toolResult = await executeCalendarTool(
             functionName,
             functionArgs,
-            session.user.id
+            userId
           );
 
           // Add tool result to messages

@@ -15,11 +15,12 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as { id: string }).id;
     const { searchParams } = new URL(req.url);
     const filter = searchParams.get("filter") || "all"; // all, active, completed
     const sortBy = searchParams.get("sortBy") || "createdAt"; // createdAt, dueDate, priority
 
-    let whereConditions: any[] = [eq(todoTasks.userId, session.user.id)];
+    let whereConditions: any[] = [eq(todoTasks.userId, userId)];
 
     if (filter === "active") {
       whereConditions.push(eq(todoTasks.completed, false));
@@ -64,6 +65,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as { id: string }).id;
     const body = await req.json();
     const { title, description, priority, dueDate, category, createdBy } = body;
 
@@ -77,7 +79,7 @@ export async function POST(req: NextRequest) {
     const [task] = await db
       .insert(todoTasks)
       .values({
-        userId: session.user.id,
+        userId: userId,
         title: title.trim(),
         description: description?.trim() || null,
         priority: priority || "medium",

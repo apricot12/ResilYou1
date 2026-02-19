@@ -19,12 +19,13 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as { id: string }).id;
     await db
       .delete(chatConversations)
       .where(
         and(
           eq(chatConversations.id, id),
-          eq(chatConversations.userId, session.user.id)
+          eq(chatConversations.userId, userId)
         )
       );
 

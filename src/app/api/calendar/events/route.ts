@@ -24,12 +24,13 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    const userId = (session.user as { id: string }).id;
     const { searchParams } = new URL(request.url);
     const startDate = searchParams.get('startDate');
     const endDate = searchParams.get('endDate');
 
     // Build query conditions
-    const conditions = [eq(calendarEvents.userId, session.user.id)];
+    const conditions = [eq(calendarEvents.userId, userId)];
 
     if (startDate) {
       conditions.push(gte(calendarEvents.startDateTime, new Date(startDate)));
@@ -87,6 +88,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const userId = (session.user as { id: string }).id;
     const body = await request.json();
 
     // Validate required fields
@@ -119,7 +121,7 @@ export async function POST(request: NextRequest) {
     const [newEvent] = await db
       .insert(calendarEvents)
       .values({
-        userId: session.user.id,
+        userId: userId,
         title: body.title,
         description: body.description || null,
         startDateTime,

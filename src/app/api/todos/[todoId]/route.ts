@@ -18,6 +18,7 @@ export async function PATCH(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as { id: string }).id;
     const { todoId } = await params;
     const body = await req.json();
 
@@ -74,7 +75,7 @@ export async function PATCH(
       .where(
         and(
           eq(todoTasks.id, todoId),
-          eq(todoTasks.userId, session.user.id)
+          eq(todoTasks.userId, userId)
         )
       )
       .returning();
@@ -107,6 +108,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as { id: string }).id;
     const { todoId } = await params;
 
     const [deletedTask] = await db
@@ -114,7 +116,7 @@ export async function DELETE(
       .where(
         and(
           eq(todoTasks.id, todoId),
-          eq(todoTasks.userId, session.user.id)
+          eq(todoTasks.userId, userId)
         )
       )
       .returning();

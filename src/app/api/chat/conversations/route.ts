@@ -15,8 +15,9 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as { id: string }).id;
     const conversations = await db.query.chatConversations.findMany({
-      where: eq(chatConversations.userId, session.user.id),
+      where: eq(chatConversations.userId, userId),
       orderBy: [desc(chatConversations.updatedAt)],
     });
 
@@ -41,12 +42,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const userId = (session.user as { id: string }).id;
     const { title } = await req.json();
 
     const [conversation] = await db
       .insert(chatConversations)
       .values({
-        userId: session.user.id,
+        userId: userId,
         title: title || "New Conversation",
         createdAt: new Date(),
         updatedAt: new Date(),

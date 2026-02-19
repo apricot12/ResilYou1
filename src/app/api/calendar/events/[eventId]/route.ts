@@ -26,6 +26,8 @@ export async function GET(
       );
     }
 
+    const userId = (session.user as { id: string }).id;
+
     // Fetch event from database
     const [event] = await db
       .select()
@@ -33,7 +35,7 @@ export async function GET(
       .where(
         and(
           eq(calendarEvents.id, eventId),
-          eq(calendarEvents.userId, session.user.id)
+          eq(calendarEvents.userId, userId)
         )
       )
       .limit(1);
@@ -78,6 +80,8 @@ export async function PUT(
       );
     }
 
+    const userId = (session.user as { id: string }).id;
+
     // Check if event exists and belongs to user
     const [existingEvent] = await db
       .select()
@@ -85,7 +89,7 @@ export async function PUT(
       .where(
         and(
           eq(calendarEvents.id, eventId),
-          eq(calendarEvents.userId, session.user.id)
+          eq(calendarEvents.userId, userId)
         )
       )
       .limit(1);
@@ -147,7 +151,7 @@ export async function PUT(
       .where(
         and(
           eq(calendarEvents.id, eventId),
-          eq(calendarEvents.userId, session.user.id)
+          eq(calendarEvents.userId, userId)
         )
       )
       .returning();
@@ -186,13 +190,15 @@ export async function DELETE(
       );
     }
 
+    const userId = (session.user as { id: string }).id;
+
     // Delete event from database
     const [deletedEvent] = await db
       .delete(calendarEvents)
       .where(
         and(
           eq(calendarEvents.id, eventId),
-          eq(calendarEvents.userId, session.user.id)
+          eq(calendarEvents.userId, userId)
         )
       )
       .returning();
