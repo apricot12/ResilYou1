@@ -28,44 +28,44 @@ const plans: PlanProps[] = [
         popular: 0,
         price: 0,
         description:
-            "Perfect for getting started with basic features and exploring our platform.",
-        buttonText: "Start Free Trial",
+            "Everything you need to get organised and build productive daily habits.",
+        buttonText: "Get Started Free",
         benefitList: [
-            "1 team member",
-            "1 GB storage",
-            "Up to 2 pages",
-            "Community support",
-            "AI assistance"
+            "Unlimited tasks",
+            "AI task creation",
+            "Calendar integration",
+            "Basic categories & tags",
+            "Community support"
         ]
     },
     {
-        title: "Premium",
+        title: "Pro",
         popular: 1,
-        price: 45,
+        price: 9,
         description:
-            "Ideal for growing teams that need advanced features and priority support.",
-        buttonText: "Get started",
+            "Unlock the full power of ResilYou with advanced AI and priority features.",
+        buttonText: "Start Pro Trial",
         benefitList: [
-            "4 team member",
-            "8 GB storage",
-            "Up to 6 pages",
-            "Priority support",
-            "AI assistance"
+            "Everything in Free",
+            "Unlimited AI chat messages",
+            "Smart due-date suggestions",
+            "Priority & recurring tasks",
+            "Priority email support"
         ]
     },
     {
-        title: "Enterprise",
+        title: "Teams",
         popular: 0,
-        price: 120,
+        price: 19,
         description:
-            "Comprehensive solution for large organizations with extensive customization needs.",
+            "Collaborate and stay aligned with shared task lists and team dashboards.",
         buttonText: "Contact Us",
         benefitList: [
-            "10 team member",
-            "20 GB storage",
-            "Up to 10 pages",
-            "Phone & email support",
-            "AI assistance"
+            "Everything in Pro",
+            "Up to 10 team members",
+            "Shared task boards",
+            "Admin controls",
+            "Dedicated support"
         ]
     }
 ]
@@ -78,11 +78,11 @@ export const PricingSection = () => {
             </h2>
 
             <h2 className="mb-4 text-center font-bold text-3xl md:text-4xl">
-                Get unlimited access
+                Simple, transparent pricing
             </h2>
 
             <h3 className="mx-auto pb-14 text-center text-muted-foreground text-xl md:w-1/2">
-                Choose the perfect plan that fits your needs and budget.
+                Start free, upgrade when you're ready. No hidden fees, cancel any time.
             </h3>
 
             <div className="grid space-x-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-4">

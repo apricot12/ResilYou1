@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, boolean, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, integer, index, json } from "drizzle-orm/pg-core";
 
 export const users = pgTable("users", {
     id: text("id").primaryKey(),
@@ -10,6 +10,9 @@ export const users = pgTable("users", {
     image: text("image"),
     avatar: text("avatar"),
     avatarUrl: text("avatar_url"),
+    role: text("role", { enum: ["user", "admin"] })
+        .notNull()
+        .default("user"),
     createdAt: timestamp("created_at")
         .$defaultFn(() => /* @__PURE__ */ new Date())
         .notNull(),
@@ -79,3 +82,85 @@ export const subscriptions = pgTable("subscriptions", {
     trialStart: timestamp('trial_start'),
     trialEnd: timestamp('trial_end')
 });
+
+// Calendar Events Table
+export const calendarEvents = pgTable("calendar_events", {
+    id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    userId: text("user_id")
+        .notNull()
+        .references(() => users.id, { onDelete: "cascade" }),
+    title: text("title").notNull(),
+    description: text("description"),
+    startDateTime: timestamp("start_date_time", { withTimezone: true }).notNull(),
+    endDateTime: timestamp("end_date_time", { withTimezone: true }).notNull(),
+    location: text("location"),
+    category: text("category", {
+        enum: ["work", "personal", "appointment", "meeting", "other"]
+    }).default("other"),
+    reminderMinutes: integer("reminder_minutes").default(30),
+    recurrence: text("recurrence", {
+        enum: ["none", "daily", "weekly", "monthly", "yearly"]
+    }).default("none"),
+    createdAt: timestamp("created_at").$defaultFn(() => new Date()),
+    updatedAt: timestamp("updated_at").$defaultFn(() => new Date())
+}, (table) => ({
+    userIdIdx: index("calendar_events_user_id_idx").on(table.userId),
+    startDateTimeIdx: index("calendar_events_start_date_time_idx").on(table.startDateTime)
+}));
+
+// Chat Conversations Table (for future chatbot feature)
+export const chatConversations = pgTable("chat_conversations", {
+    id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    userId: text("user_id")
+        .notNull()
+        .references(() => users.id, { onDelete: "cascade" }),
+    title: text("title"),
+    createdAt: timestamp("created_at").$defaultFn(() => new Date()),
+    updatedAt: timestamp("updated_at").$defaultFn(() => new Date())
+}, (table) => ({
+    userIdIdx: index("chat_conversations_user_id_idx").on(table.userId)
+}));
+
+// Chat Messages Table (for future chatbot feature)
+export const chatMessages = pgTable("chat_messages", {
+    id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    conversationId: text("conversation_id")
+        .notNull()
+        .references(() => chatConversations.id, { onDelete: "cascade" }),
+    role: text("role", { enum: ["user", "assistant", "system"] }).notNull(),
+    content: text("content").notNull(),
+    intent: json("intent").$type<{
+        type: string;
+        confidence: number;
+        entities: Record<string, any>;
+    }>(),
+    createdAt: timestamp("created_at").$defaultFn(() => new Date())
+}, (table) => ({
+    conversationIdIdx: index("chat_messages_conversation_id_idx").on(table.conversationId)
+}));
+
+// Todo Tasks Table
+export const todoTasks = pgTable("todo_tasks", {
+    id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+    userId: text("user_id")
+        .notNull()
+        .references(() => users.id, { onDelete: "cascade" }),
+    title: text("title").notNull(),
+    description: text("description"),
+    completed: boolean("completed").default(false).notNull(),
+    priority: text("priority", {
+        enum: ["low", "medium", "high"]
+    }).default("medium"),
+    dueDate: timestamp("due_date", { withTimezone: true }),
+    category: text("category"),
+    createdBy: text("created_by", {
+        enum: ["user", "ai"]
+    }).default("user").notNull(),
+    createdAt: timestamp("created_at").$defaultFn(() => new Date()),
+    updatedAt: timestamp("updated_at").$defaultFn(() => new Date()),
+    completedAt: timestamp("completed_at")
+}, (table) => ({
+    userIdIdx: index("todo_tasks_user_id_idx").on(table.userId),
+    dueDateIdx: index("todo_tasks_due_date_idx").on(table.dueDate),
+    completedIdx: index("todo_tasks_completed_idx").on(table.completed)
+}));

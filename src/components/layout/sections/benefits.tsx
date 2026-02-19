@@ -11,27 +11,27 @@ interface BenefitsProps {
 const benefitList: BenefitsProps[] = [
     {
         icon: "Rocket",
-        title: "Launch Faster",
+        title: "Stay Organized",
         description:
-            "Skip weeks of setup and boilerplate. Get a production-ready foundation with authentication, UI, and core features already built."
+            "Keep all your tasks, appointments, and goals in one place. Never miss a deadline or forget an important task again."
     },
     {
-        icon: "Code",
-        title: "Modern Stack",
+        icon: "Bot",
+        title: "AI Assistant",
         description:
-            "Built with Next.js, TypeScript, and industry-leading tools. Your startup deserves a tech stack that scales with your growth."
+            "Chat naturally with your AI assistant to create tasks, schedule events, and manage your day - just like talking to a personal helper."
     },
     {
-        icon: "Palette",
-        title: "Beautiful Design",
+        icon: "Calendar",
+        title: "Smart Scheduling",
         description:
-            "Polished UI components from shadcn/ui give your SaaS a professional look from day one. Fully customizable to match your brand."
+            "Integrated calendar helps you visualize your day. Set due dates, get reminders, and stay on top of your schedule effortlessly."
     },
     {
-        icon: "Shield",
-        title: "Production Ready",
+        icon: "Zap",
+        title: "Boost Productivity",
         description:
-            "Enterprise-grade authentication, type-safe database queries, and file upload capabilities. Everything you need to go live confidently."
+            "Focus on what matters. Prioritize tasks, track completion, and build momentum with streaks and achievements."
     }
 ]
 
@@ -41,14 +41,15 @@ export const BenefitsSection = () => {
             <div className="grid place-items-center lg:grid-cols-2 lg:gap-24">
                 <div>
                     <h2 className="mb-2 text-lg text-primary tracking-wider">
-                        Benefits
+                        Why ResilYou
                     </h2>
 
                     <h2 className="mb-4 font-bold text-3xl md:text-4xl">
-                        Why Choose This Starter
+                        Your Daily Productivity Partner
                     </h2>
                     <p className="mb-8 text-muted-foreground text-xl">
-                        Stop wasting time on infrastructure. Get a battle-tested foundation that lets you focus on what matters - building your unique features and growing your business.
+                        ResilYou combines the simplicity of a to-do list with the power of AI.
+                        Get more done, stay organized, and achieve your goals - all in one beautiful app.
                     </p>
                 </div>
 

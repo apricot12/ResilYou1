@@ -1,10 +1,10 @@
 import {
-    RiShieldKeyholeLine,
-    RiDashboard3Line,
-    RiUploadCloud2Line,
-    RiDatabase2Line,
-    RiFireFill,
-    RiStackLine
+    RiTodoLine,
+    RiRobot2Line,
+    RiCalendarLine,
+    RiCheckboxCircleLine,
+    RiTimeLine,
+    RiPriceTag3Line
 } from "@remixicon/react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -16,40 +16,40 @@ interface FeaturesProps {
 
 const featureList: FeaturesProps[] = [
     {
-        icon: <RiShieldKeyholeLine size={24} className="text-primary" />,
-        title: "Better Auth",
+        icon: <RiTodoLine size={24} className="text-primary" />,
+        title: "Smart Task Lists",
         description:
-            "Complete authentication with social logins, email verification, and session management built-in."
+            "Create, organize, and manage your daily tasks with priority levels, due dates, and custom categories."
     },
     {
-        icon: <RiDashboard3Line size={24} className="text-primary" />,
-        title: "Modern UI Kit",
+        icon: <RiRobot2Line size={24} className="text-primary" />,
+        title: "AI Chat Assistant",
         description:
-            "Beautiful, accessible components powered by shadcn/ui. Dark mode included."
+            "Just tell your AI assistant what you need to do. It creates tasks and schedules events through natural conversation."
     },
     {
-        icon: <RiUploadCloud2Line size={24} className="text-primary" />,
-        title: "File Uploads",
+        icon: <RiCalendarLine size={24} className="text-primary" />,
+        title: "Integrated Calendar",
         description:
-            "Secure file upload system with UploadThing integration, perfect for user avatars and content."
+            "Visualize your schedule with a beautiful calendar. Schedule meetings, set reminders, and never miss an appointment."
     },
     {
-        icon: <RiDatabase2Line size={24} className="text-primary" />,
-        title: "Type-Safe DB",
+        icon: <RiCheckboxCircleLine size={24} className="text-primary" />,
+        title: "Quick Actions",
         description:
-            "PostgreSQL database with Drizzle ORM for type-safe queries and easy schema management."
+            "Mark tasks complete, reschedule events, and update priorities with a single click or voice command."
     },
     {
-        icon: <RiFireFill size={24} className="text-primary" />,
-        title: "Performance",
+        icon: <RiTimeLine size={24} className="text-primary" />,
+        title: "Smart Reminders",
         description:
-            "Built on Next.js for lightning-fast page loads, SEO optimization, and the best developer experience."
+            "Get timely notifications for upcoming tasks and events. Never forget important deadlines again."
     },
     {
-        icon: <RiStackLine size={24} className="text-primary" />,
-        title: "Monorepo Ready",
+        icon: <RiPriceTag3Line size={24} className="text-primary" />,
+        title: "Categories & Tags",
         description:
-            "Turborepo setup for clean code organization and efficient builds as your project grows."
+            "Organize tasks with custom categories. Filter by work, personal, shopping, or create your own labels."
     }
 ]
 
@@ -57,15 +57,16 @@ export const FeaturesSection = () => {
     return (
         <section id="features" className="container mx-auto px-4 py-16 sm:py-20">
             <h2 className="mb-2 text-center text-lg text-primary tracking-wider">
-                Features
+                Core Features
             </h2>
 
             <h2 className="mb-4 text-center font-bold text-3xl md:text-4xl">
-                Everything You Need
+                Built-in Functionality
             </h2>
 
             <h3 className="mx-auto mb-8 text-center text-muted-foreground text-xl md:w-1/2">
-                Launch your SaaS faster with our carefully chosen tech stack and pre-built features. Focus on your unique value proposition, not boilerplate.
+                Start with a solid foundation. Our app includes essential features that every productive person needs,
+                saving you time and keeping you organized.
             </h3>
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,6 +1,5 @@
 "use client"
-import { ArrowRight, Lock } from "lucide-react"
-import { RiGithubFill } from "@remixicon/react"
+import { ArrowRight, CheckCircle2 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useTheme } from "next-themes"
@@ -22,23 +21,40 @@ export const HeroSection = () => {
                         <span className="mr-2 text-primary">
                             <Badge>New</Badge>
                         </span>
-                        <span> Launch your Saas app now! </span>
+                        <span> AI-Powered Task Management </span>
                     </Badge>
 
                     <div className="font-bold text-4xl md:text-5xl lg:text-6xl">
                         <h1>
-                            Experience the
+                            Organize Your Life with
                             <span className="bg-gradient-to-r from-[#7033ff] to-primary bg-clip-text px-2 text-transparent">
-                                Indie Saas
+                                ResilYou
                             </span>
-                            Starter
                         </h1>
                     </div>
 
                     <p className="mx-auto max-w-lg text-muted-foreground text-lg leading-relaxed md:mx-0 lg:text-xl xl:max-w-xl">
-                        {`A complete SaaS starter with authentication, beautiful UI components, 
-            and everything you need to launch your platform quickly and efficiently.`}
+                        {`The smart daily to-do list app that helps you stay productive.
+                        Manage tasks, schedule events, and chat with your AI assistant
+                        to get things done faster.`}
                     </p>
+
+                    <div className="space-y-4">
+                        <div className="flex flex-col items-center gap-3 md:items-start">
+                            <div className="flex items-center gap-2 text-sm">
+                                <CheckCircle2 className="h-5 w-5 text-green-500" />
+                                <span>AI-powered task creation</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                                <CheckCircle2 className="h-5 w-5 text-green-500" />
+                                <span>Smart calendar integration</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                                <CheckCircle2 className="h-5 w-5 text-green-500" />
+                                <span>Natural language processing</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="flex flex-col items-center space-y-4 md:flex-row md:space-x-4 md:space-y-0 md:justify-start">
                         <Button
@@ -47,7 +63,7 @@ export const HeroSection = () => {
                             className="group/arrow rounded-full"
                         >
                             <Link href="/auth/sign-up">
-                                Get Started
+                                Start Organizing Free
                                 <ArrowRight className="ml-2 size-5 transition-transform group-hover/arrow:translate-x-1" />
                             </Link>
                         </Button>
@@ -58,58 +74,33 @@ export const HeroSection = () => {
                             size="lg"
                             className="rounded-full"
                         >
-                            <Link
-                                href={site.links.github}
-                                target="_blank"
-                                className="flex items-center gap-2"
-                            >
-                                <RiGithubFill className="size-5 fill-foreground" />
-                                GitHub repository
+                            <Link href="/auth/sign-in">
+                                Sign In
                             </Link>
                         </Button>
                     </div>
                 </div>
 
                 {/* Right side - Preview */}
-                <div className="group relative  lg:scale-115">
+                <div className="group relative lg:scale-115">
                     {/* Enhanced animated glow effect */}
                     <div className="absolute inset-0 -z-10">
                         <div className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 h-[75%] w-[85%] animate-pulse bg-gradient-to-r from-primary/30 via-purple-500/30 to-primary/30 blur-3xl" />
                     </div>
 
                     {/* Browser Window Container */}
-                    <div className="relative mx-auto w-full overflow-hidden rounded-t-md border border-border/50 bg-background shadow-2xl transition-all duration-500 group-hover:shadow-primary/20">
-                        {/* Browser Navigation Bar */}
-                        <div className="relative flex h-8 items-center justify-between border-b border-border/50 bg-muted/50 px-4">
-                            {/* Traffic Light Buttons */}
-                            <div className="flex space-x-2">
-                                <div className="size-2 rounded-full bg-red-500" />
-                                <div className="size-2 rounded-full bg-yellow-500" />
-                                <div className="size-2 rounded-full bg-green-500" />
-                            </div>
-                            
-                            {/* URL Bar */}
-                            <div className="-translate-x-1/2 absolute left-1/2 w-[30%] max-w-md">
-                                <div className="flex h-5 items-center justify-center gap-2 rounded-md bg-background/80 px-Z shadow-sm ">
-                                    <Lock className="size-2 text-muted-foreground" />
-                                    <div className="text-muted-foreground text-xs">
-                                        {site.url}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="relative mx-auto w-full overflow-hidden rounded-xl border border-border/50 bg-background shadow-2xl transition-all duration-500 group-hover:shadow-primary/20">
+                        <Image
+                            width={1400}
+                            height={1400}
+                            className="relative flex w-full items-center"
+                            src={
+                                theme === "light" ? "/dash-light.png" : "/dash.png"
+                            }
+                            alt="ResilYou Dashboard Preview"
+                            priority
+                        />
                     </div>
-
-                    <Image
-                        width={1400}
-                        height={1400}
-                        className="relative flex w-full items-center"
-                        src={
-                            theme === "light" ? "/dash-light.png" : "/dash.png"
-                        }
-                        alt="dashboard preview"
-                        priority
-                    />
 
                     {/* Decorative elements */}
                     <div className="-right-8 -bottom-8 absolute -z-10 size-32 rounded-full bg-primary/30 blur-3xl lg:size-40" />
@@ -119,4 +110,3 @@ export const HeroSection = () => {
         </section>
     )
 }
-

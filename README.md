@@ -1,7 +1,7 @@
 <div align="center">
-  <img src="public/logo.svg" alt="IndieSaas Starter Logo" width="80" height="80">
+  <img src="public/logo.svg" alt="ResilYou Logo" width="80" height="80">
   <h1 style="color: #6d28d9; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 42px; text-align: center; margin: 20px 0 0 0;">
-    IndieSaas Starter
+    ResilYou
   </h1>
 </div>
 
@@ -35,8 +35,8 @@ A modern, Next.js Saas boilerplate with comprehensive authentication built on Be
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/indieceo/Indiesaas
-cd indiesaas
+git clone https://github.com/indieceo/ResilYou
+cd resilyou
 ```
 
 ### 2. Install Dependencies
@@ -121,12 +121,10 @@ This project is licensed under the MIT License. You are free to use, modify, and
 
 
 ---
+---
 
 <div align="center">
-  <a href="https://indietech.dev/?utm_source=github&utm_campaign=indiesaas" target="_blank">
-    <img src="https://indietech.dev/logo.svg" alt="IndieTech Logo" width="32" height="32">
-  </a>
   <p>
-    Visit <strong><a href="https://indietech.dev/?utm_source=github&utm_campaign=indiesaas">IndieTech.dev</a></strong> <br/> for more on our products and services.
+    Built with ❤️ by the <strong>ResilYou</strong> team
   </p>
 </div>

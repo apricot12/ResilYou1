@@ -27,24 +27,24 @@ const footerSections: FooterSectionProps[] = [
         links: [
             { href: "#features", label: "Features" },
             { href: "#pricing", label: "Pricing" },
-            { href: "#integrations", label: "Integrations" },
-            { href: "#api", label: "API" }
+            { href: "#faq", label: "FAQ" },
+            { href: "/dashboard", label: "Dashboard" }
+        ]
+    },
+    {
+        title: "App",
+        links: [
+            { href: "/dashboard/todos", label: "My Tasks" },
+            { href: "/dashboard/calendar", label: "Calendar" },
+            { href: "/dashboard/chat", label: "AI Assistant" }
         ]
     },
     {
         title: "Company",
         links: [
             { href: "#about", label: "About Us" },
-            { href: "#careers", label: "Careers" },
-            { href: "#blog", label: "Blog" }
-        ]
-    },
-    {
-        title: "Resources",
-        links: [
-            { href: "#documentation", label: "Documentation" },
-            { href: "#help", label: "Help Center" },
-            { href: "#status", label: "Status" }
+            { href: "#blog", label: "Blog" },
+            { href: `mailto:${site.mailSupport}`, label: "Contact" }
         ]
     },
     {
@@ -110,9 +110,7 @@ export const FooterSection = () => {
                                         </h3>
                                     </Link>
                                     <p className="mb-6 text-muted-foreground leading-relaxed">
-                                        Build and scale your SaaS faster with
-                                        our Starter Kit. From authentication to
-                                        payments, we've got you covered.
+                                        Your daily productivity partner. Organise tasks, plan your day, and let AI do the heavy lifting.
                                     </p>
 
                                     {/* Social Links */}
@@ -192,9 +190,7 @@ export const FooterSection = () => {
                                         </h3>
                                     </Link>
                                     <p className="mb-6 max-w-sm text-muted-foreground text-sm leading-relaxed">
-                                        Build and scale your SaaS faster with
-                                        our Starter Kit. From authentication to
-                                        payments, we've got you covered.
+                                        Your daily productivity partner. Organise tasks, plan your day, and let AI do the heavy lifting.
                                     </p>
 
                                     {/* Social Links Mobile */}
@@ -267,24 +263,8 @@ export const FooterSection = () => {
                             </div>
 
                             <div className="flex flex-col items-center gap-3 lg:flex-row lg:gap-6">
-                               
-                                
-                                <div className="flex items-center gap-2 text-muted-foreground text-sm">
-                                    <span>This SaaS Starter is built by</span>
-                                    <Link
-                                        target="_blank"
-                                        href="https://indietech.dev/?utm_source=indiesaas"
-                                        className="flex items-center gap-1 font-semibold"
-                                    >
-                                        <Image
-                                            src="https://indietech.dev/logo.svg"
-                                            alt="Indietech"
-                                            width={16}
-                                            height={16}
-                                            className="inline-block"
-                                        />
-                                        Indietech
-                                    </Link>
+                                <div className="text-muted-foreground text-sm">
+                                    <span>Built with ❤️ by the ResilYou team</span>
                                 </div>
                             </div>
                         </div>

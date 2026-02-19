@@ -6,12 +6,17 @@ import {
     RiToolsFill,
     RiSettingsLine,
     RiSpeedUpLine,
-    RiBankCardLine
+    RiBankCardLine,
+    RiCalendarLine,
+    RiRobot2Line,
+    RiShieldStarLine,
+    RiTodoLine
 } from "@remixicon/react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import type * as React from "react"
+import { useState, useEffect } from "react"
 import { NavUser } from "@/components/layout/nav-user"
 import {
     Sidebar,
@@ -27,23 +32,21 @@ import {
 } from "@/components/ui/sidebar"
 import { site } from "@/config/site"
 
-const data = {
-    navMain: [
-        {
-            title: "General",
-            items: [
-                {title: "Dashboard",url: "/dashboard",icon: RiSpeedUpLine},
-                {title: "Analytics",url: "/dashboard/analytics",icon: RiLineChartLine},
-                {title: "Integrations",url: "/dashboard/integrations",icon: RiToolsFill},
-                {title: "Settings",url: "/dashboard/settings",icon: RiSettingsLine},
-                {title: "Billing",url: "/dashboard/billing",icon: RiBankCardLine},
-                {title: "API",url: "/dashboard/api",icon: RiCodeSSlashLine},
-            ]
-        }
-    ]
-}
+const generalItems = [
+    {title: "Dashboard",url: "/dashboard",icon: RiSpeedUpLine},
+    {title: "AI Chat",url: "/dashboard/chat",icon: RiRobot2Line},
+    {title: "My Tasks",url: "/dashboard/todos",icon: RiTodoLine},
+    {title: "Calendar",url: "/dashboard/calendar",icon: RiCalendarLine},
+    {title: "Analytics",url: "/dashboard/analytics",icon: RiLineChartLine},
+    {title: "Integrations",url: "/dashboard/integrations",icon: RiToolsFill},
+    {title: "Settings",url: "/dashboard/settings",icon: RiSettingsLine},
+    {title: "Billing",url: "/dashboard/billing",icon: RiBankCardLine},
+    {title: "API",url: "/dashboard/api",icon: RiCodeSSlashLine},
+]
 
-
+const adminItems = [
+    {title: "User Management",url: "/dashboard/admin",icon: RiShieldStarLine},
+]
 
 function SidebarLogo() {
     return (
@@ -70,6 +73,29 @@ function SidebarLogo() {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     const pathname = usePathname()
+    const [isAdmin, setIsAdmin] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        // Check if user is admin
+        fetch('/api/admin/users?limit=1')
+            .then(res => {
+                setIsAdmin(res.ok && res.status !== 403)
+            })
+            .catch(() => setIsAdmin(false))
+            .finally(() => setIsLoading(false))
+    }, [])
+
+    const navSections = [
+        {
+            title: "General",
+            items: generalItems
+        },
+        ...(isAdmin ? [{
+            title: "Admin",
+            items: adminItems
+        }] : [])
+    ]
 
     return (
         <Sidebar collapsible="icon" variant="inset" {...props}>
@@ -77,14 +103,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarLogo />
             </SidebarHeader>
             <SidebarContent className="-mt-2">
-                {data.navMain.map((item) => (
-                    <SidebarGroup key={item.title}>
+                {navSections.map((section) => (
+                    <SidebarGroup key={section.title}>
                         <SidebarGroupLabel className="text-muted-foreground/65 uppercase">
-                            {item.title}
+                            {section.title}
                         </SidebarGroupLabel>
                         <SidebarGroupContent>
                             <SidebarMenu>
-                                {item.items.map((item) => {
+                                {section.items.map((item) => {
                                     const isActive = pathname === item.url
 
                                     return (
