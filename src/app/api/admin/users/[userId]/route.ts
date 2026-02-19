@@ -32,7 +32,7 @@ export async function PATCH(
     }
 
     // Prevent users from changing their own role
-    if (accessCheck.user.id === userId) {
+    if (accessCheck.user!.id === userId) {
       return NextResponse.json(
         { error: "Cannot change your own role" },
         { status: 403 }
@@ -90,7 +90,7 @@ export async function DELETE(
     const { userId } = await params;
 
     // Prevent users from deleting themselves
-    if (accessCheck.user.id === userId) {
+    if (accessCheck.user!.id === userId) {
       return NextResponse.json(
         { error: "Cannot delete your own account" },
         { status: 403 }
