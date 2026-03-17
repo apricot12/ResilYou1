@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -33,7 +32,7 @@ interface EventFormProps {
 
 export function EventForm({ onSubmit, onCancel, defaultValues, isSubmitting }: EventFormProps) {
   const form = useForm<EventFormData>({
-    resolver: zodResolver(eventFormSchema),
+    resolver: zodResolver(eventFormSchema) as any,
     defaultValues: {
       title: "",
       description: "",
