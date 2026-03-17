@@ -6,7 +6,6 @@ import {
     RiToolsFill,
     RiSettingsLine,
     RiSpeedUpLine,
-    RiBankCardLine,
     RiCalendarLine,
     RiRobot2Line,
     RiShieldStarLine,
@@ -40,8 +39,7 @@ const generalItems = [
     {title: "Analytics",url: "/dashboard/analytics",icon: RiLineChartLine},
     {title: "Integrations",url: "/dashboard/integrations",icon: RiToolsFill},
     {title: "Settings",url: "/dashboard/settings",icon: RiSettingsLine},
-    {title: "Billing",url: "/dashboard/billing",icon: RiBankCardLine},
-    {title: "API",url: "/dashboard/api",icon: RiCodeSSlashLine},
+{title: "API",url: "/dashboard/api",icon: RiCodeSSlashLine},
 ]
 
 const adminItems = [
