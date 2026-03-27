@@ -1,6 +1,6 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Building2, Clock, Mail, Phone } from "lucide-react"
+import { Clock, Mail, MessageCircle } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
@@ -39,15 +39,13 @@ export const ContactSection = () => {
             firstName: "",
             lastName: "",
             email: "",
-            subject: "Web Development",
+            subject: "General Inquiry",
             message: ""
         }
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         const { firstName, lastName, email, subject, message } = values
-        console.log(values)
-
         const mailToLink = `mailto:${site.mailSupport}?subject=${subject}&body=Hello I am ${firstName} ${lastName}, my Email is ${email}. %0D%0A${message}`
 
         window.location.href = mailToLink
@@ -63,53 +61,38 @@ export const ContactSection = () => {
                         </h2>
 
                         <h2 className="font-bold text-3xl md:text-4xl">
-                            Connect with us
+                            Get in touch
                         </h2>
                     </div>
                     <p className="mb-8 text-muted-foreground lg:w-5/6">
-                        We'd love to hear from you! Get in touch with us for any questions, 
-                        inquiries, or collaboration opportunities. We're here to help.
+                        Have a question about ResilYou, need help getting started, or want to share feedback? We'd love to hear from you.
                     </p>
 
                     <div className="flex flex-col gap-4">
                         <div>
                             <div className="mb-1 flex gap-2">
-                                <Building2 />
-                                <div className="font-bold">Find us</div>
-                            </div>
-
-                            <div>
-                                742 Evergreen Terrace, Springfield, IL 62704
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className="mb-1 flex gap-2">
-                                <Phone />
-                                <div className="font-bold">Call us</div>
-                            </div>
-
-                            <div>+1 (619) 123-4567</div>
-                        </div>
-
-                        <div>
-                            <div className="mb-1 flex gap-2">
                                 <Mail />
-                                <div className="font-bold">Mail us</div>
+                                <div className="font-bold">Email us</div>
                             </div>
-
                             <div>{site.mailSupport}</div>
+                        </div>
+
+                        <div>
+                            <div className="mb-1 flex gap-2">
+                                <MessageCircle />
+                                <div className="font-bold">Support</div>
+                            </div>
+                            <div>We typically respond within 24 hours on business days.</div>
                         </div>
 
                         <div>
                             <div className="flex gap-2">
                                 <Clock />
-                                <div className="font-bold">Visit us</div>
+                                <div className="font-bold">Hours</div>
                             </div>
-
                             <div>
                                 <div>Monday - Friday</div>
-                                <div>8AM - 4PM</div>
+                                <div>9AM - 6PM</div>
                             </div>
                         </div>
                     </div>
@@ -133,7 +116,7 @@ export const ContactSection = () => {
                                                 </FormLabel>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="Indie"
+                                                        placeholder="Jane"
                                                         {...field}
                                                     />
                                                 </FormControl>
@@ -149,7 +132,7 @@ export const ContactSection = () => {
                                                 <FormLabel>Last Name</FormLabel>
                                                 <FormControl>
                                                     <Input
-                                                        placeholder="CEO"
+                                                        placeholder="Doe"
                                                         {...field}
                                                     />
                                                 </FormControl>
@@ -169,7 +152,7 @@ export const ContactSection = () => {
                                                 <FormControl>
                                                     <Input
                                                         type="email"
-                                                        placeholder="me@domain.com"
+                                                        placeholder="you@example.com"
                                                         {...field}
                                                     />
                                                 </FormControl>
@@ -198,21 +181,12 @@ export const ContactSection = () => {
                                                         </SelectTrigger>
                                                     </FormControl>
                                                     <SelectContent>
-                                                        <SelectItem value="Web Development">
-                                                            Web Development
-                                                        </SelectItem>
-                                                        <SelectItem value="Mobile Development">
-                                                            Mobile Development
-                                                        </SelectItem>
-                                                        <SelectItem value="Figma Design">
-                                                            Figma Design
-                                                        </SelectItem>
-                                                        <SelectItem value="REST API">
-                                                            REST API
-                                                        </SelectItem>
-                                                        <SelectItem value="FullStack Project">
-                                                            FullStack Project
-                                                        </SelectItem>
+                                                        <SelectItem value="General Inquiry">General Inquiry</SelectItem>
+                                                        <SelectItem value="Account & Billing">Account & Billing</SelectItem>
+                                                        <SelectItem value="Technical Support">Technical Support</SelectItem>
+                                                        <SelectItem value="Feature Request">Feature Request</SelectItem>
+                                                        <SelectItem value="Bug Report">Bug Report</SelectItem>
+                                                        <SelectItem value="Partnership">Partnership</SelectItem>
                                                     </SelectContent>
                                                 </Select>
                                                 <FormMessage />
@@ -231,7 +205,7 @@ export const ContactSection = () => {
                                                 <FormControl>
                                                     <Textarea
                                                         rows={5}
-                                                        placeholder="Your message..."
+                                                        placeholder="How can we help you?"
                                                         className="resize-none"
                                                         {...field}
                                                     />
