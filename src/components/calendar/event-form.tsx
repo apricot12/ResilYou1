@@ -238,7 +238,7 @@ export function EventForm({ onSubmit, onCancel, defaultValues, isSubmitting }: E
               <FormItem>
                 <FormLabel>Reminder</FormLabel>
                 <Select
-                  onValueChange={(value) => field.onChange(Number(value))}
+                  onValueChange={(value: string) => field.onChange(Number(value))}
                   defaultValue={String(field.value)}
                 >
                   <FormControl>
