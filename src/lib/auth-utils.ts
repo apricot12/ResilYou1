@@ -17,10 +17,11 @@ export async function getCurrentUser(headers: Headers) {
   }
 
   // Fetch full user data including role
+  const userId = (session.user as { id: string }).id;
   const [user] = await db
     .select()
     .from(users)
-    .where(eq(users.id, session.user.id))
+    .where(eq(users.id, userId))
     .limit(1);
 
   return user;
@@ -68,10 +69,11 @@ export async function checkAdminAccess(headers: Headers) {
     return { authorized: false, status: 401, message: "Unauthorized" };
   }
 
+  const adminUserId = (session.user as { id: string }).id;
   const [user] = await db
     .select()
     .from(users)
-    .where(eq(users.id, session.user.id))
+    .where(eq(users.id, adminUserId))
     .limit(1);
 
   if (!user || user.role !== "admin") {

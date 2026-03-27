@@ -222,7 +222,7 @@ export default function AdminPage() {
                   <TableCell>
                     <Select
                       value={user.role}
-                      onValueChange={(value) =>
+                      onValueChange={(value: string) =>
                         handleRoleChange(user.id, value as "user" | "admin")
                       }
                     >

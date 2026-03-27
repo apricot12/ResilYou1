@@ -40,9 +40,9 @@ export default function ChatPage() {
         </Button>
 
         <Bot className="mb-4 h-16 w-16 text-muted-foreground" />
-        <h2 className="mb-2 text-2xl font-bold">Welcome to AI Chat</h2>
+        <h2 className="mb-2 text-2xl font-bold">Hi, I'm Ana</h2>
         <p className="text-muted-foreground max-w-sm">
-          Select a conversation or create a new one to get started
+          Your personal productivity companion. Start a new conversation and let's tackle your day together.
         </p>
       </div>
     </div>

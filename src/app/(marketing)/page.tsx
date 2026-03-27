@@ -7,7 +7,6 @@ import { HeroSection } from "@/components/layout/sections/hero"
 import { PricingSection } from "@/components/layout/sections/pricing"
 import { ServicesSection } from "@/components/layout/sections/services"
 import { TeamSection } from "@/components/layout/sections/team"
-import { TestimonialSection } from "@/components/layout/sections/testimonial"
 import LogoCloud from "@/components/logo-cloud"
 import { site } from "@/config/site"
 
@@ -52,7 +51,6 @@ export default function Home() {
             <BenefitsSection />
             <FeaturesSection />
             <ServicesSection />
-            <TestimonialSection />
             <TeamSection />
             <CommunitySection />
             <PricingSection />
