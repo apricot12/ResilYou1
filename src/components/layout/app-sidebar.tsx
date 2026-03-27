@@ -33,7 +33,7 @@ import { site } from "@/config/site"
 
 const generalItems = [
     {title: "Dashboard",url: "/dashboard",icon: RiSpeedUpLine},
-    {title: "AI Chat",url: "/dashboard/chat",icon: RiRobot2Line},
+    {title: "Ana (AI)",url: "/dashboard/chat",icon: RiRobot2Line},
     {title: "My Tasks",url: "/dashboard/todos",icon: RiTodoLine},
     {title: "Calendar",url: "/dashboard/calendar",icon: RiCalendarLine},
     {title: "Analytics",url: "/dashboard/analytics",icon: RiLineChartLine},
