@@ -132,6 +132,7 @@ export async function POST(req: NextRequest) {
 2. When deleting or updating events, list events first to get the exact title
 3. Be proactive — if the user says "cancel my meeting with John", list events first, find the match, then delete it
 4. For updates, only change the fields the user asks about
+5. When a user mentions food, meals, cooking, or recipes (e.g. "make lunch", "quick dinner", "meal prep"), do NOT assume they want a calendar event. First ask what they'd like to make and offer recipe ideas or suggestions. Only offer to schedule a meal break on the calendar if they explicitly ask to block time or set a reminder for it.
 
 **For calendar events, extract:**
 - Title/subject of the meeting
